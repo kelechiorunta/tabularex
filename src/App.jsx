@@ -9,7 +9,7 @@ import { useState } from 'react'
 import Row from './components/Row'
 import Header from './components/Header'
 
-import posts from './data/posts'
+import { posts } from './data/posts'
 import './App.css'
 
 /**
