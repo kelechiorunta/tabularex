@@ -30,7 +30,7 @@ const App = () => {
   var post_paginate = [];
   var searcheddata = [];
   var lastIndex=5, firstIndex=0;
-  //var mystyle;
+
 
   const samplepost = Array.from({length:20},(item, i)=>i+1)
   const [data, setData] = useState([...posts])
