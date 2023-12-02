@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import App from '../App';
 
 /**
  * Row Component
@@ -7,12 +8,14 @@ import { useState, useEffect } from 'react';
  *
  * @returns {JSXElement}
  */
-const Row = ( {id, title, content} ) => {
+const Row = ( {id, title, content, selectstyle, searchedrow} ) => {
   return (
     <ul className="row">
-      <li>{id}</li>
-      <li>{title}</li>
-      <li>{content}</li>
+      {/* <li>{userId}</li> */}
+      <li className={id===(searchedrow) && "selected"}>{id}</li>
+      <li className={id===(searchedrow) && "selected"}>{title}</li>
+      <li className={id===(searchedrow) && "selected"}>{content}</li>
+      {console.log(selectstyle)}
     </ul>
   );
 }
