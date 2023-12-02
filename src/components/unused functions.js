@@ -119,3 +119,27 @@ const sortcontent_des = () => {
 // ascending_id={sortid_asc} descending_id={sortid_des}
 //           ascending_title={sorttitle_asc} descending_title={sorttitle_des}
 //           ascending_cont={sortcontent_asc} descending_cont={sortcontent_des}
+
+{
+  /* <input type="Number" min={1} max={posts.length/5}
+           value={currentPage} onChange={(e)=>{ setcurrentPage((e.target.value)); Paginate();}}/>
+
+          <li className='page_link' key={n}><a className='page_link pageno' href="#">{currentPage}</a></li> */
+}
+
+{
+  /* <span>Page:</span><input type="Number" min={1} max={posts.length/5}
+           value={currentPage} onChange={(e)=>{ setcurrentPage((e.target.value)); Paginate();}}/> */
+}
+
+{
+  /* <input type="Number" min={1} max={posts.length/5}
+value={currentPage} onChange={(e)=>{ setcurrentPage((e.target.value)); Paginate();}}/>
+
+<li className='page_link' key={n}><a className='page_link pageno' href="#">{currentPage}</a></li> */
+}
+
+{
+  /* <span>Page:</span><input type="Number" min={1} max={posts.length/5}
+value={currentPage} onChange={(e)=>{ setcurrentPage((e.target.value)); Paginate();}}/> */
+}

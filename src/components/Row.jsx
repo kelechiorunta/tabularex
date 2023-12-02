@@ -8,13 +8,14 @@ import App from '../App';
  *
  * @returns {JSXElement}
  */
-const Row = ( {id, title, content} ) => {
+const Row = ( {id, title, content, selectstyle, searchedrow} ) => {
   return (
     <ul className="row">
       {/* <li>{userId}</li> */}
-      <li>{id}</li>
-      <li>{title}</li>
-      <li>{content}</li>
+      <li className={id===(searchedrow) && "selected"}>{id}</li>
+      <li className={id===(searchedrow) && "selected"}>{title}</li>
+      <li className={id===(searchedrow) && "selected"}>{content}</li>
+      {console.log(selectstyle)}
     </ul>
   );
 }
