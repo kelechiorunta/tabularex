@@ -98,8 +98,26 @@ const App = () => {
           }
 
           <fieldset className="page_container">
-            <fieldset className='search_id_cont'><span>Search ID:</span><input className='search_input' onChange={searchInput} type="text"/></fieldset>
-            <ul className='page_link'>
+            <fieldset className="search_id_cont">
+              <span>Search ID:</span>
+              <input
+                className="search_input"
+                onChange={searchInput}
+                type="text"
+              />
+            </fieldset>
+
+            <fieldset className="search_id_cont">
+              <span>Search Content:</span>
+              <input
+                className="search_input_content"
+                onChange={searchContent}
+                type="text"
+              />
+              <button onClick={()=>{((myCounter< Math.ceil(postdata.length/5))) && ( setCounter(prev=>prev+1), setfpage(prev=>prev+5), setlpage(prev=>prev+5), console.log(fpage, lpage), setData([...postdata.slice(fpage+5,lpage+5)]))}}>{">>"}</button>
+            </fieldset>
+
+            <ul className="page_link">
               <button onClick={()=>(currentPage > 1) && setcurrentPage(prev=> prev-1)}><a href="#">Prev</a></button>
               {<input className="pageno" type="Number" min={1} max={posts.length/5}
               value={currentPage} onChange={(e)=> (setcurrentPage(Number(e.target.value)), Paginate())}/>}
