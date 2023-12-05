@@ -39,6 +39,9 @@ const App = () => {
   // const [search_val, setValue] = useState(1)
   // const [sampledata, setSample] = useState([...samplepost])
   const [currentPage, setcurrentPage] = useState(1);
+  const [myCounter, setCounter] = useState(1);
+  const [firstPage, setFirstPage] = useState(0);
+  const [lastPage, setLastPage] = useState(5);
   const [order, setorder] = useState("ASC")
   const NumberofPages = 5;
   // const samplepost = Array.from({length:20},(item, i)=>i+1)
@@ -74,6 +77,23 @@ const App = () => {
     // (searcheddata = posts.filter((item, index)=>{return item.id === Number(e.target.value)}),(setmyclass(e.target.value)),
     // setData([...searcheddata]));
 
+  }
+
+  /**
+   * Function to handle search
+   *
+   * @returns void
+   */
+  const handleSearch = () => {
+    if ( myCounter > Math.ceil( postdata.length/5 ) ) {
+      return;
+    }
+
+    setCounter(prev=>prev+1);
+    setFirstPage(prev=>prev+5);
+    setLastPage(prev=>prev+5);
+    console.log(firstPage, lastPage);
+    setData([...postdata.slice(firstPage+5, lastPage+5)]);
   }
 
   /**
@@ -114,7 +134,7 @@ const App = () => {
                 onChange={searchContent}
                 type="text"
               />
-              <button onClick={()=>{((myCounter< Math.ceil(postdata.length/5))) && ( setCounter(prev=>prev+1), setfpage(prev=>prev+5), setlpage(prev=>prev+5), console.log(fpage, lpage), setData([...postdata.slice(fpage+5,lpage+5)]))}}>{">>"}</button>
+              <button onClick={handleSearch}>{">>"}</button>
             </fieldset>
 
             <ul className="page_link">
