@@ -96,6 +96,27 @@ const App = () => {
     setData([...postdata.slice(firstPage+5, lastPage+5)]);
   }
 
+  const searchContent = (e) =>{
+    e.target.value.length<1?(Paginate(), setsearchedContent(""), setnoofRows(0), setCounter(1), setpostdata([]), setData([...data]), (setcurrentPage(Math.ceil(Number(1)/5))), setFirstPage(0), setLastPage(5), post_Content = []):
+    ( searchedString += e.target.value.toString().toLowerCase(), setsearchedContent(e.target.value.toString().toLowerCase()),
+    post_Content = posts.filter((item, index, arr)=>{return item.body.toString().toLowerCase().slice(0, searchedString.length)
+    ===(searchedString.toString().toLowerCase().slice(0, searchedString.length))}),
+    post_Content.length > 0 && (new_Content = post_Content.map((item)=>setpostsearchContent(item.id))),
+    filtered_post_Content= post_Content.filter((p, i)=>{return i<5}),setFirstPage(0), setLastPage(5), setCounter(1),
+    console.log(post_Content), setnoofRows(new_Content.length))
+
+    if (post_Content.length > 0 && post_Content.length < 5)
+    {(setFirstPage(0), setLastPage(5),setpostdata([...post_Content]),setData([...post_Content]), (setcurrentPage(currentPage)))}
+    else if (post_Content.length >= 5) //&& data.length >5)
+    {(setCounter(myCounter), setpostdata([...post_Content]), setFirstPage(0), setLastPage(5), setData([...post_Content.slice(0,5)]))}
+    // else if (post_Content.length > 5 && data.length < 5 )
+    // {(setFirstPage(0), setLastPage(5),setpostdata([...post_Content]),setData([...post_Content]),(setcurrentPage(currentPage)))}
+    else if (post_Content.length <= 0)
+    {(Paginate(), (setcurrentPage(1)), setCounter(1), setFirstPage(0), setLastPage(5))}
+    //post_Content.length < 5 ? (setFirstPage(0), setLastPage(5),setpostdata([...post_Content]),setData([...post_Content])) : (setpostdata([...post_Content]), setFirstPage(firstPage+5), setLastPage(lastPage+5), setData([...post_Content.slice(firstPage,lastPage)])))
+    //post_Content.length < 1 && (Paginate(),(setcurrentPage(currentPage)), setpostdata([...data]), setData([...postdata]), setCounter(1), setFirstPage(0), setLastPage(5))//(setcurrentPage(Math.ceil(Number(post_searchContent)/5))))
+  }
+
   /**
    * Calling the useEffect hook to render the data from the Paginate function and to render based on the
    * currentPage dependency
@@ -110,10 +131,20 @@ const App = () => {
       <section>
         <div id="app">
 
-          <Header sorting={sorting} />
+          <Header sorting={sorting} noofsearchedrows={noofRows}/>
 
-           { data.map((post, id) => {
-             return <Row key={id}  id={post.id} title={post.title} content={post.body} selectstyle={mystyle} searchedrow={searchedId}/>
+          { data.map( (post, id) => {
+              return (
+                <Row
+                  key={id}
+                  id={post.id}
+                  title={post.title}
+                  content={post.body}
+                  selectstyle={mystyle}
+                  searchedrow={searchedId}
+                  searchedrow_content={searchedContent}
+                />
+              );
             })
           }
 
@@ -138,15 +169,24 @@ const App = () => {
             </fieldset>
 
             <ul className="page_link">
-              <button onClick={()=>(currentPage > 1) && setcurrentPage(prev=> prev-1)}><a href="#">Prev</a></button>
-              {<input className="pageno" type="Number" min={1} max={posts.length/5}
-              value={currentPage} onChange={(e)=> (setcurrentPage(Number(e.target.value)), Paginate())}/>}
-              <button onClick={()=>(currentPage < posts.length/5) && setcurrentPage(prev=>prev+1)}><a href="#">Next</a></button>
+              <button
+                onClick={()=>(currentPage > 1) && setcurrentPage(prev=> prev-1)}
+              >
+                <a href="#">Prev</a></button>
+                {<input className="pageno" type="Number" min={1} max={posts.length/5}
+              value={currentPage} onChange={(e)=> (setcurrentPage(Number(e.target.value)), Paginate())}
+              />}
+              <button
+                onClick={()=>(currentPage < posts.length/5) && setcurrentPage(prev=>prev+1)}
+              >
+                <a href="#">Next</a>
+              </button>
             </ul>
           </fieldset>
         </div>
       </section>
     </>
   )
-          }
+}
+
 export default App
