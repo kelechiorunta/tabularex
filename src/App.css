@@ -26,6 +26,7 @@ section {
 span{
 	display: inline-block;
 	margin-top: 3px;
+	width:max-content;
 }
 
 .page_container{
@@ -63,15 +64,18 @@ a{
 	max-height:25px;
 	margin-top: 22px;
 	max-width:50px;
+	display: inline-block;
+	width:80%;
 /* border: ; */
 }
 
 .search_id_cont{
 	max-height: 20px;
-	max-width: max-content;
+	max-width: 100%;
 	margin-top: 15px;
 	border-radius: 3px;
-	border: 1px solid #e7e7e7;
+	/* border: 1px solid #423d3d; */
+	display: inline-block;
 }
 
 .search_id_cont > input{
@@ -87,14 +91,19 @@ margin-top: 0;
 }
 
 #app {
-  min-height: 100px;
-  width: 750px;
+  /* min-height: 100px; */
+  width: 950px;
   background-color: #fff;
   box-shadow: 0 0 50px 10px rgba(0, 0, 0, 0.1);
   border-radius: 10px;
 	margin: 25% auto;
-  /* overflow: auto; */
+	/* width:max-content; */
+	height:80vh;
+	/* overflow: scroll; */
+  overflow-y:auto;
+	overflow-x: hidden;
 }
+
 
 ul.header,
 ul.row {
@@ -142,6 +151,18 @@ ul.row li:nth-child(2) {
 
 ul.header li:nth-child(3),
 ul.row li:nth-child(3) {
+  width: 60%;
+	border-right: 1px solid #e7e7e7;
+	display: flex;
+	align-items: center;
+}
+
+.span_right{
+	display: inline-flex;
+	justify-content: flex-end;
+	margin-left: 80px;
+	margin-top: 1px;
+
   width: 60%;
 	border-right: 1px solid #e7e7e7;
 	display: flex;
